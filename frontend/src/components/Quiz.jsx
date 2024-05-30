@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
-
+import { useUser } from './UserContext';
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [timer, setTimer] = useState(1200); // 20 minutes in seconds
   const navigate = useNavigate();
+  const user = useUser();
 
   useEffect(() => {
     const fetchedQuestions = [
@@ -196,7 +197,13 @@ const Quiz = () => {
     }, 0);
   
     // Navigate to the results page with the score and total number of questions
-    navigate('/results', { state: { score, total: questions.length } });
+    if (user && user.email) {
+      navigate('/results', {
+        state: { score, total: questions.length, email: user.email },
+      });
+    } else {
+      console.error('User email not available');
+    }
   };
   
 
@@ -210,7 +217,6 @@ const Quiz = () => {
     <div>
       <Navbar examName="Sample Exam" timer={formatTime(timer)} />
       <div className="quiz-container" style={{ maxHeight: '500px', overflowY: 'auto' }}>
-        {/* Set maxHeight and overflowY properties to enable scrolling */}
         <h1>Quiz Questions</h1>
         {questions.map((question) => (
           <div key={question.id} className="question">

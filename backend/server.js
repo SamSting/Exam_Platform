@@ -36,7 +36,12 @@ app.use(session({
   store: MongoStore.create({ 
     mongoUrl: 'mongodb+srv://srijan:04822480@cluster01.dvy2j4p.mongodb.net/',  // Add your database name
     collectionName: 'sessions'
-  })
+  }),
+  cookie: {
+    secure: false, // Set true if using HTTPS
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
+  }
 }));
 
 // Passport middleware

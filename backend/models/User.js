@@ -26,6 +26,10 @@ const UserSchema = new mongoose.Schema({
   image: {
     type: String,
   },
+  score: {
+    type: Number,
+    default: 0,
+  }
 });
 
 const User = mongoose.model('User', UserSchema);
