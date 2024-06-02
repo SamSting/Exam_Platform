@@ -29,6 +29,12 @@ const UserSchema = new mongoose.Schema({
   score: {
     type: Number,
     default: 0,
+    
+  },
+
+  lastScore: {  // New field for last score
+    type: Number,
+    default: null,
   }
 });
 

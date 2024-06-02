@@ -63,6 +63,7 @@ router.get('/current_user', async (req, res) => {
   }
 });
 
+
 // Fetch user by email
 router.get('/user', async (req, res) => {
   const { email } = req.query;
@@ -93,6 +94,7 @@ router.post('/update_score', async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    user.lastScore = user.score;  // Save the current score as the last score
     user.score = score;
     await user.save();
     res.status(200).json({ message: 'Score updated successfully' });
@@ -101,5 +103,4 @@ router.post('/update_score', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
 module.exports = router;
