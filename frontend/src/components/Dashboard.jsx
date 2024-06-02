@@ -22,7 +22,8 @@ const Dashboard = ({ user }) => {
         <>
           <h1>Welcome, {user.name}</h1>
           {user.picture && <img src={user.picture} alt={`${user.name}'s profile`} className="profile-pic" />} <br /><br />
-          <button onClick={startQuiz}>Start Quiz</button>
+          <button onClick={startQuiz}>Start Quiz</button> <br />
+          <h1>Your Last Score, {user.score}</h1>
         </>
       ) : (
         <h1>Loading...</h1>

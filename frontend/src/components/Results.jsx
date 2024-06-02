@@ -58,7 +58,7 @@ const Results = () => {
         <p>
           Welcome, {user.displayName}! Your score is: {score} out of {total}
         </p>
-      ) : (
+      ) : (+
         <p>Loading user data...</p>
       )}
       <button onClick={handleExit}>Exit</button>
